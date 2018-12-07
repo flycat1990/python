@@ -1,0 +1,269 @@
+### Python解释器
+
+CPython：当我们从[Python官方网站](https://www.python.org/)下载并安装好Python 3.x后，我们就直接获得了一个官方版本的解释器：CPython。这个解释器是用C语言开发的，所以叫CPython。在命令行下运行`python`就是启动CPython解释器。CPython是使用最广的Python解释器。教程的所有代码也都在CPython下执行。
+
+
+
+### Python输入和输出
+
+#### 输出
+
+用print()函数在括号中加上字符串，就可以向屏幕上输出指定的文字，例如：
+
+```
+>>> print('hello, world')
+```
+
+print()函数也可以接受多个字符串，用逗号“,”隔开，就可以连成一串输出
+
+print()也可以打印整数或者计算结果
+
+print()也可以打印变量
+
+
+
+#### 输入
+
+用input()函数即可实现内容的输入，例如：
+
+```
+>>> name = input()
+Michael
+```
+
+
+
+输入和输出的结合使用
+
+```
+name = input('please enter your name:')
+print('hello,', name)
+```
+
+执行这段代码，结果如图
+
+[root@loan-basic-0-195 local]# python my.py 
+please enter your name:
+
+输入你的名字即可打印出“hello，xxx”
+
+
+
+### 数据类型和变量
+
+Python中的数据类型有以下几种：整数、浮点数（float）、字符串（string）、布尔值（True和False）、空值（None）、列表（list）、元组（tuple）、字典（dic）、日期（datetime）
+
+#### 列表
+
+变量=['a','b','b']
+
+```
+>>> classmates = ['Michael', 'Bob', 'Tracy']
+>>> classmates
+['Michael', 'Bob', 'Tracy']
+```
+
+用len()函数可以获得list元素的个数：
+
+```
+>>> len(classmates)
+3
+```
+
+用索引来访问list中每一个位置的元素，记得索引是从`0`开始的：
+
+```
+>>> classmates[0]
+'Michael'
+>>> classmates[1]
+'Bob'
+>>> classmates[2]
+'Tracy'
+```
+
+list是一个可变的有序表，所以，可以往list中追加元素到末尾：
+
+```
+>>> classmates.append('Adam')
+>>> classmates
+['Michael', 'Bob', 'Tracy', 'Adam']
+```
+
+也可以把元素插入到指定的位置，比如索引号为`1`的位置：
+
+```
+>>> classmates.insert(1, 'Jack')
+>>> classmates
+['Michael', 'Jack', 'Bob', 'Tracy', 'Adam']
+```
+
+要删除list末尾的元素，用`pop()`方法：
+
+```
+>>> classmates.pop()
+'Adam'
+>>> classmates
+['Michael', 'Jack', 'Bob', 'Tracy']
+```
+
+要把某个元素替换成别的元素，可以直接赋值给对应的索引位置：
+
+```
+>>> classmates[1] = 'Sarah'
+>>> classmates
+['Michael', 'Sarah', 'Tracy']
+```
+
+一个列表里面还可以包含其他列表
+
+```
+>>> p = ['asp', 'php']
+>>> s = ['python', 'java', p, 'scheme']
+```
+
+#### 元组
+
+变量=（'a','b','c'）
+
+另一种有序列表叫元组：tuple。tuple和list非常类似，但是tuple一旦初始化就不能修改（指的是里面的每一个元素的指向不可变，但是指向元素的内容是可变的）
+
+```
+>>> t = ('a', 'b', ['A', 'B'])
+>>> t[2][0] = 'X'
+>>> t[2][1] = 'Y'
+>>> t
+('a', 'b', ['X', 'Y'])
+```
+
+表面上看，tuple的元素确实变了，但其实变的不是tuple的元素，而是list的元素。tuple一开始指向的list并没有改成别的list，所以，tuple所谓的“不变”是说，tuple的每个元素，指向永远不变。即指向`'a'`，就不能改成指向`'b'`，指向一个list，就不能改成指向其他对象，但指向的这个list本身是可变的！
+
+#### 变量
+
+变量不仅仅可以是数字，还可以是任意数据类型。变量在程序中就是用一个变量名表示了，变量名必须是大小写英文、数字和`_`的组合，且不能用数字开头
+
+
+
+### 格式化
+
+#### %格式化
+
+%运算符就是用来格式化字符串的。在字符串内部，`%s`表示用字符串替换，`%d`表示用整数替换，有几个`%?`占位符，后面就跟几个变量或者值，顺序要对应好。如果只有一个`%?`，括号可以省略。
+
+| 占位符 | 替换内容     |
+| ------ | ------------ |
+| %d     | 整数         |
+| %f     | 浮点数       |
+| %s     | 字符串       |
+| %x     | 十六进制整数 |
+
+例子：
+
+```
+# -*- coding: utf-8 -*-
+s1 = 72
+s2 = 85
+r = (s2-s1)/s1*100
+print('hello,你的成绩提高了:%.1f%%' % r)
+```
+
+#### format()格式化
+
+另一种格式化字符串的方法是使用字符串的`format()`方法，它会用传入的参数依次替换字符串内的占位符`{0}`、`{1}`……，不过这种方式写起来比%要麻烦得多：
+
+```
+>>> 'Hello, {0}, 成绩提升了 {1:.1f}%'.format('小明', 17.125)
+'Hello, 小明, 成绩提升了 17.1%'
+```
+
+
+
+### 条件判断语句
+
+用if elif、（else if的缩写） 、else的语法做条件判断，注意格式，每一行判断语句用：结束
+
+```
+age = 3
+if age >= 18:
+    print('adult')
+elif age >= 6:
+    print('teenager')
+else:
+    print('kid')
+```
+
+
+
+### 循环语句
+
+#### for...in循环
+
+用循环语句计算1-10之和
+
+```
+sum = 0
+for x in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]:
+    sum = sum + x
+print(sum)
+```
+
+range()`函数，可以生成一个整数序列，再通过`list()`函数可以转换为list。比如`range(5)`生成的序列是从0开始小于5的整数：
+
+用range来计算1-100之和
+
+```
+sum = 0
+for x in range(101):
+    sum = sum + x
+print(sum)
+```
+
+#### while循环
+
+只要条件满足，就不断循环，条件不满足时退出循环，比如我们要计算100以内所有奇数之和，可以用while循环实现：
+
+```
+sum = 0
+n = 99
+while n > 0:
+    sum = sum + n
+    n = n - 2
+print(sum)
+```
+
+在循环语句中可以用break和continue语句
+
+##### break
+
+如果要提前结束循环，可以用`break`语句：
+
+```
+n = 1
+while n <= 100:
+    if n > 10: # 当n = 11时，条件满足，执行break语句
+        break # break语句会结束当前循环
+    print(n)
+    n = n + 1
+print('END')
+```
+
+执行上面的代码可以看到，打印出1~10后，紧接着打印`END`，程序结束。
+
+可见`break`的作用是提前结束循环。
+
+##### continue
+
+但是，如果我们想只打印奇数，可以用`continue`语句跳过某些循环：
+
+```
+n=0
+while n < 10:
+    n = n + 1
+    if n % 2 == 0:
+        continue
+    print(n)
+```
+
+执行上面的代码可以看到，打印的不再是1～10，而是1，3，5，7，9。
+
+可见`continue`的作用是提前结束本轮循环，并直接开始下一轮循环。
+
