@@ -51,7 +51,7 @@ please enter your name:
 
 ### 数据类型和变量
 
-Python中的数据类型有以下几种：整数、浮点数（float）、字符串（string）、布尔值（True和False）、空值（None）、列表（list）、元组（tuple）、字典（dic）、日期（datetime）
+Python中的数据类型有以下几种：整数（integer）、浮点数（float）、字符串（string）、布尔值（True和False）、空值（None）、列表（list）、元组（tuple）、字典（dic）、日期（datetime）
 
 #### 列表
 
